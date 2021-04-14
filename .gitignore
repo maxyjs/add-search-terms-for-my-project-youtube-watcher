@@ -1,0 +1,9 @@
+client/node_modules
+server/node_modules
+dist/
+/.idea
+.DS_Store
+.env
+client/build
+logs
+*.log
