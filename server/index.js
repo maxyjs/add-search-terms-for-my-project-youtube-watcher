@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 const PORT = process.env.PORT || 5000;
-const CONNECTION_URL = process.env.CONNECTION_URL;
+const CONNECTION_URL = 'mongodb+srv://eReactLearner:Zik739mb@yt-terms.bmef7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
