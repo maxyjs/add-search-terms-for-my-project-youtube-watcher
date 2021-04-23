@@ -8,7 +8,6 @@ const router = express.Router();
 export const getPosts = async (req, res) => {
   try {
     const postMessages = await PostMessage.find();
-
     res.status(200).json(postMessages);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -23,21 +22,69 @@ export const getPost = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  const { term , minRating, minViews, dateTimeUpload, videosLength, addPlaylistMark } = req.body;
-
-  const newPostMessage = new PostMessage({ term , minRating, minViews, dateTimeUpload, videosLength, addPlaylistMark })
+  const {
+    term,
+    minRating,
+    minViews,
+    dateTimeUpload,
+    videosLength,
+    addPlaylistMark,
+  } = req.body;
+  const newPostMessage = new PostMessage({
+    term,
+    minRating,
+    minViews,
+    dateTimeUpload,
+    videosLength,
+    addPlaylistMark,
+  });
 
   try {
     await newPostMessage.save();
-
-    res.status(201).json(newPostMessage );
+    res.status(201).json(newPostMessage);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
 };
 
-export const updatePost = async (req, res) => {};
+export const updatePost = async (req, res) => {
+  const { id } = req.params;
+  const {
+    term,
+    minRating,
+    minViews,
+    dateTimeUpload,
+    videosLength,
+    addPlaylistMark,
+  } = req.body;
 
-export const deletePost = async (req, res) => {};
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
+
+  const updatedPost = {
+    term,
+    minRating,
+    minViews,
+    dateTimeUpload,
+    videosLength,
+    addPlaylistMark,
+    _id: id,
+  };
+
+  await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
+
+  res.json(updatedPost);
+};
+
+export const deletePost = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
+
+  await PostMessage.findByIdAndRemove(id);
+
+  res.json({ message: 'Post deleted successfully.' });
+};
 
 export default router;
