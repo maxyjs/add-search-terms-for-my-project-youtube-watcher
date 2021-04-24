@@ -18,14 +18,6 @@ export const getPost = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  // const {
-  //   term,
-  //   minRating,
-  //   minViews,
-  //   dateTimeUpload,
-  //   videosLength,
-  //   addPlaylistMark,
-  // } = req.body;
   const newPostMessage = new PostMessage({
     ...req.body
   });
@@ -40,15 +32,6 @@ console.log('\x1b[36m%s\x1b[0m', "newPostMessage = ", newPostMessage); /* CONSOL
 
 export const updatePost = async (req, res) => {
   const { id } = req.params;
-  // const {
-  //   term,
-  //   minRating,
-  //   minViews,
-  //   dateTimeUpload,
-  //   videosLength,
-  //   addPlaylistMark,
-  // } = req.body;
-
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send(`No post with id: ${id}`);
 
