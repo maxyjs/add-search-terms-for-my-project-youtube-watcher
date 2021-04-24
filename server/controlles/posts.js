@@ -1,9 +1,5 @@
-import express from 'express';
 import mongoose from 'mongoose';
-
 import PostMessage from '../models/postMessage.js';
-
-const router = express.Router();
 
 export const getPosts = async (req, res) => {
   try {
@@ -22,23 +18,18 @@ export const getPost = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  const {
-    term,
-    minRating,
-    minViews,
-    dateTimeUpload,
-    videosLength,
-    addPlaylistMark,
-  } = req.body;
+  // const {
+  //   term,
+  //   minRating,
+  //   minViews,
+  //   dateTimeUpload,
+  //   videosLength,
+  //   addPlaylistMark,
+  // } = req.body;
   const newPostMessage = new PostMessage({
-    term,
-    minRating,
-    minViews,
-    dateTimeUpload,
-    videosLength,
-    addPlaylistMark,
+    ...req.body
   });
-
+console.log('\x1b[36m%s\x1b[0m', "newPostMessage = ", newPostMessage); /* CONSOLE *************/
   try {
     await newPostMessage.save();
     res.status(201).json(newPostMessage);
@@ -49,25 +40,20 @@ export const createPost = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   const { id } = req.params;
-  const {
-    term,
-    minRating,
-    minViews,
-    dateTimeUpload,
-    videosLength,
-    addPlaylistMark,
-  } = req.body;
+  // const {
+  //   term,
+  //   minRating,
+  //   minViews,
+  //   dateTimeUpload,
+  //   videosLength,
+  //   addPlaylistMark,
+  // } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send(`No post with id: ${id}`);
 
   const updatedPost = {
-    term,
-    minRating,
-    minViews,
-    dateTimeUpload,
-    videosLength,
-    addPlaylistMark,
+    ...req.body,
     _id: id,
   };
 
@@ -86,5 +72,3 @@ export const deletePost = async (req, res) => {
 
   res.json({ message: 'Post deleted successfully.' });
 };
-
-export default router;
