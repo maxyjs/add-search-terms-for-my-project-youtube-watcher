@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import { getPosts } from './actions/posts';
-import useStyles from './styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const App = () => {
   const [currentId, setCurrentId] = useState(0);
@@ -19,7 +19,7 @@ const App = () => {
   return (
     <Container maxWidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">
+        <Typography className={classes.heading} variant="h5" align="center">
           Search Terms
         </Typography>
       </AppBar>
@@ -30,7 +30,7 @@ const App = () => {
             container
             justify="space-between"
             alignItems="stretch"
-            spacing={3}
+            spacing={1}
           >
             <Grid item xs={12} sm={4}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
@@ -44,5 +44,19 @@ const App = () => {
     </Container>
   );
 };
+
+const useStyles = makeStyles(() => ({
+  appBar: {
+    borderRadius: 2,
+    margin: '5px 0px 15px 0px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  heading: {
+    color: '#3f51b5',
+  },
+}));
 
 export default App;

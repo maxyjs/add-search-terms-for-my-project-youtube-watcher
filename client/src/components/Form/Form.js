@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
-import useStyles from './styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId }) => {
@@ -16,6 +16,7 @@ const Form = ({ currentId, setCurrentId }) => {
     dateTimeUpload: '',
     videosLength: '',
   });
+
   const post = useSelector((state) =>
     currentId ? state.posts.find((message) => message._id === currentId) : null
   );
@@ -24,7 +25,7 @@ const Form = ({ currentId, setCurrentId }) => {
     if (post) setPostData(post);
   }, [post]);
 
-  const clear = () => {
+  const clearForm = () => {
     setCurrentId(0);
     setPostData({
       term: '',
@@ -36,15 +37,18 @@ const Form = ({ currentId, setCurrentId }) => {
     });
   };
 
+  const clearCurrentId = () => {
+    setCurrentId(0);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (currentId === 0) {
       dispatch(createPost(postData));
-      clear();
+      clearCurrentId();
     } else {
       dispatch(updatePost(currentId, postData));
-      clear();
+      clearCurrentId();
     }
   };
 
@@ -74,6 +78,7 @@ const Form = ({ currentId, setCurrentId }) => {
           name="minRating"
           variant="outlined"
           label="Min Rating"
+          type="number"
           fullWidth
           rows={4}
           value={postData.minRating}
@@ -86,6 +91,7 @@ const Form = ({ currentId, setCurrentId }) => {
           name="minViews"
           variant="outlined"
           label="Min Views"
+          type="number"
           fullWidth
           value={postData.minViews}
           onChange={(e) =>
@@ -136,11 +142,12 @@ const Form = ({ currentId, setCurrentId }) => {
         >
           Submit
         </Button>
+
         <Button
           variant="contained"
           color="secondary"
           size="small"
-          onClick={clear}
+          onClick={clearForm}
           fullWidth
         >
           Clear
@@ -149,5 +156,25 @@ const Form = ({ currentId, setCurrentId }) => {
     </Paper>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+    },
+  },
+  paper: {
+    padding: theme.spacing(2),
+  },
+  form: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  buttonSubmit: {
+    marginBottom: 10,
+    marginTop: 10,
+  },
+}));
 
 export default Form;

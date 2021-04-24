@@ -11,9 +11,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-
-import { deletePost } from '../../../actions/posts';
-import useStyles from './styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { deletePost } from '../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
   const {
@@ -40,32 +39,36 @@ const Post = ({ post, setCurrentId }) => {
         {term}
       </Typography>
 
-      <CardContent>
+      <CardContent className={classes.cardContent}>
         <Typography variant="body2" color="textSecondary" component="p">
-          {minRating}
+          ❤ minRating: {minRating}
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="p">
-          {minViews}
+          👀 minViews: {minViews}
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="p">
-          {addPlaylistMark}
+          🖌 addPlaylistMark: {addPlaylistMark}
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="p">
-          {dateTimeUpload}
+          ⏱ dateTimeUpload: {dateTimeUpload}
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="p">
-          {videosLength}
+          ⏳ videosLength: {videosLength}
+        </Typography>
+
+        <Typography variant="body2" color="textSecondary" component="p">
+          {moment(post.createdAt).fromNow()}
         </Typography>
       </CardContent>
 
       <CardActions className={classes.cardActions}>
         <Button
           size="small"
-          color="primary"
+          color="secondary"
           onClick={() => dispatch(deletePost(post._id))}
         >
           <DeleteIcon fontSize="small" /> Delete
@@ -79,5 +82,37 @@ const Post = ({ post, setCurrentId }) => {
     </Card>
   );
 };
+
+const useStyles = makeStyles({
+  border: {
+    border: 'solid',
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    borderRadius: '2px',
+    height: '100%',
+    padding: '10px 5px 0px 10px',
+  },
+  grid: {
+    display: 'flex',
+  },
+  details: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  title: {
+    marginBottom: '5px',
+  },
+  cardContent: {
+    padding: '0 5px',
+  },
+  cardActions: {
+    padding: '0 10px 8px 5px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+});
 
 export default Post;
