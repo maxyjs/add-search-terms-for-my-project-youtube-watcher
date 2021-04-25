@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { createPost, updatePost } from '../../actions/posts';
 
-const defaultValueForm = {
-  term: 'test term 1',
+const defaultFormValue = {
+  term: '',
   minRating: '80',
   minViews: '1000',
   addPlaylistMark: 'auto_WATCHER',
@@ -16,7 +16,7 @@ const defaultValueForm = {
 const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [formValue, setFormValue] = useState(defaultValueForm);
+  const [formValue, setFormValue] = useState(defaultFormValue);
 
   const post = useSelector((state) => {
     return currentId
@@ -25,16 +25,12 @@ const Form = ({ currentId, setCurrentId }) => {
   });
 
   useEffect(() => {
-    setFormValue(defaultValueForm);
-  }, []);
-
-  useEffect(() => {
     if (post) setFormValue(post);
   }, [post]);
 
   const clearForm = () => {
     setCurrentId(0);
-    setFormValue(defaultValueForm);
+    setFormValue(defaultFormValue);
   };
 
   const clearCurrentId = () => {
@@ -157,8 +153,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    padding: theme.spacing(2),
-    borderRadius: '2px'
+    padding: '5px 8px 15px 8px',
+    borderRadius: '2px',
+    marginBottom: '20px',
   },
   form: {
     display: 'flex',
@@ -167,7 +164,7 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonSubmit: {
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 15,
   },
 }));
 
