@@ -26,8 +26,8 @@ const Post = ({ post, setCurrentId }) => {
       <Typography
         className={classes.title}
         gutterBottom
-        variant="h5"
-        component="h2"
+        variant="h6"
+        // component="h2"
       >
         {term}
       </Typography>
@@ -77,16 +77,14 @@ const Post = ({ post, setCurrentId }) => {
 };
 
 const useStyles = makeStyles({
-  border: {
-    border: 'solid',
-  },
   card: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    borderRadius: '2px',
+    borderRadius: '3px',
     height: '100%',
-    padding: '10px 5px 0px 10px',
+    padding: '5px 5px 0px 10px',
+    border: '2px solid',
   },
   grid: {
     display: 'flex',

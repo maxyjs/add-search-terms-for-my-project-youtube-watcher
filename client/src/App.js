@@ -47,7 +47,7 @@ const App = () => {
 
 const useStyles = makeStyles(() => ({
   appBar: {
-    borderRadius: 2,
+    borderRadius: '2px',
     margin: '5px 0px 15px 0px',
     display: 'flex',
     flexDirection: 'row',

@@ -158,6 +158,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+    borderRadius: '2px'
   },
   form: {
     display: 'flex',
