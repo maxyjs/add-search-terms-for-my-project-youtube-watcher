@@ -60,7 +60,9 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">
+        <Typography
+          className={classes.formTitle}
+          variant="h6">
           {currentId
             ? `Редактирование "${post.term}"`
             : 'Добавление поискового запроса'}
@@ -163,6 +165,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+  },
+  formTitle: {
+    lineHeight: '1.3rem',
+    padding: '5px 10px 15px 10px'
   },
   buttonSubmit: {
     marginBottom: 10,

@@ -9,11 +9,13 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import IconButton from '@material-ui/core/IconButton';
-import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { deletePost } from '../../actions/postsActions';
 import CardContentRow from './CardContentRow';
+import moment from 'moment';
+import 'moment/locale/ru';
+moment.locale('ru');
 
 const Post = ({ post, setCurrentId }) => {
   const {
@@ -61,11 +63,6 @@ const Post = ({ post, setCurrentId }) => {
           contentLeft={'Длина видео:'}
           contentRight={videosLength}
         />
-        <CardContentRow
-          icon={'⌚'}
-          contentLeft={'Добавлено:'}
-          contentRight={moment(post.createdAt).fromNow()}
-        />
       </CardContent>
 
       <CardActions className={classes.cardActions}>
@@ -76,6 +73,8 @@ const Post = ({ post, setCurrentId }) => {
         >
           <DeleteIcon fontSize="small" /> удалить
         </Button>
+
+        <span>{moment(post.createdAt).fromNow()}</span>
 
         <IconButton
           title="редактировать"
