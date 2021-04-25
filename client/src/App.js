@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { AppBar, Container, Grid, Grow, Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
@@ -25,17 +25,12 @@ const App = () => {
       </AppBar>
 
       <Grow in>
-        <Container>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="stretch"
-            spacing={1}
-          >
-            <Grid item xs={12} sm={4}>
+        <Container className={classes.container}>
+          <Grid container justify="space-between" alignItems="stretch">
+            <Grid item xs={12} sm={5}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={6}>
               <Posts setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
@@ -46,6 +41,9 @@ const App = () => {
 };
 
 const useStyles = makeStyles(() => ({
+  container: {
+    padding: 0,
+  },
   appBar: {
     borderRadius: '2px',
     margin: '5px 0px 15px 0px',
