@@ -2,13 +2,13 @@ import React from 'react';
 import { Typography } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 
-const CardContentRow = ({ contentLeft, contentRight }) => {
+const CardContentRow = ({icon, contentLeft, contentRight }) => {
   const classes = useStyles();
 
   return (
     <Typography variant="body2" color="textSecondary" component="p">
       <div className={classes.row}>
-        <span>{contentLeft}</span>
+        <span><span className={classes.icon}>{icon}</span>{contentLeft}</span>
         <span>{contentRight}</span>
       </div>
     </Typography>
@@ -20,6 +20,10 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0 10px',
+  },
+  icon: {
+    display: 'inline-block',
+width: '30px'
   },
 });
 

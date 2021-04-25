@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Paper, TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { createPost, updatePost } from '../../actions/posts';
+import { createPost, updatePost } from '../../actions/postsActions';
 
 const defaultFormValue = {
   term: '',

@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { deletePost } from '../../actions/posts';
+import { deletePost } from '../../actions/postsActions';
 import CardContentRow from './CardContentRow';
 
 const Post = ({ post, setCurrentId }) => {
@@ -35,27 +35,38 @@ const Post = ({ post, setCurrentId }) => {
         className={classes.title}
         gutterBottom
         variant="h6"
-        // component="h2"
       >
         {term}
       </Typography>
 
       <CardContent className={classes.cardContent}>
-        <CardContentRow contentLeft={'❤ minRating:'} contentRight={minRating} />
-        <CardContentRow contentLeft={'👀 minViews:'} contentRight={minViews} />
         <CardContentRow
-          contentLeft={'🖌 addPlaylistMark:'}
+          icon={'❤'}
+          contentLeft={'minRating:'}
+          contentRight={minRating}
+        />
+        <CardContentRow
+          icon={'👀'}
+          contentLeft={'minViews:'}
+          contentRight={minViews}
+        />
+        <CardContentRow
+          icon={'🖌'}
+          contentLeft={'addPlaylistMark:'}
           contentRight={addPlaylistMark}
         />
         <CardContentRow
-          contentLeft={'⏱ dateTimeUpload:'}
+          icon={'⏱'}
+          contentLeft={'dateTimeUpload:'}
           contentRight={dateTimeUpload}
         />
         <CardContentRow
-          contentLeft={'⏳ videosLength:'}
+          icon={'📼'}
+          contentLeft={'videosLength:'}
           contentRight={videosLength}
         />
         <CardContentRow
+          icon={'⌚'}
           contentLeft={'created at:'}
           contentRight={moment(post.createdAt).fromNow()}
         />
@@ -119,7 +130,7 @@ const useStyles = makeStyles({
     backgroundColor: 'transparent',
     '&:hover': {
       color: 'black',
-      backgroundColor: 'yellow'
+      backgroundColor: 'yellow',
     },
   },
 });
