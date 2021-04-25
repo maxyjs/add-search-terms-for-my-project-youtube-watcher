@@ -8,7 +8,7 @@ const CardContentRow = ({ icon, contentLeft, contentRight }) => {
   return (
     <Typography variant="body2" color="textSecondary" component="p">
       <div className={classes.row}>
-        <span>
+        <span className={classes.contentLeft}>
           <span className={classes.icon}>{icon}</span>
           {contentLeft}
         </span>
@@ -23,7 +23,13 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0 10px',
-    color: 'rgba(0, 0, 0, 0.87)'
+    color: 'rgba(0, 0, 0, 0.87)',
+  },
+  contentLeft: {
+    maxWidth: '70%',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
   },
   icon: {
     display: 'inline-block',

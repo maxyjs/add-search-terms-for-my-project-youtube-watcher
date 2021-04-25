@@ -38,32 +38,32 @@ const Post = ({ post, setCurrentId }) => {
       <CardContent className={classes.cardContent}>
         <CardContentRow
           icon={'❤'}
-          contentLeft={'minRating:'}
+          contentLeft={'Минимальный рейтинг видео:'}
           contentRight={minRating}
         />
         <CardContentRow
           icon={'👀'}
-          contentLeft={'minViews:'}
+          contentLeft={'Минимальное количество просмотров видео:'}
           contentRight={minViews}
         />
         <CardContentRow
           icon={'🖌'}
-          contentLeft={'addPlaylistMark:'}
+          contentLeft={'Добавить в плейлист содержащий фразу:'}
           contentRight={addPlaylistMark}
         />
         <CardContentRow
           icon={'⏱'}
-          contentLeft={'dateTimeUpload:'}
+          contentLeft={'Минимальное время загрузки видео:'}
           contentRight={dateTimeUpload}
         />
         <CardContentRow
           icon={'📼'}
-          contentLeft={'videosLength:'}
+          contentLeft={'Длина видео:'}
           contentRight={videosLength}
         />
         <CardContentRow
           icon={'⌚'}
-          contentLeft={'created at:'}
+          contentLeft={'Добавлено:'}
           contentRight={moment(post.createdAt).fromNow()}
         />
       </CardContent>
@@ -74,21 +74,16 @@ const Post = ({ post, setCurrentId }) => {
           color="secondary"
           onClick={() => dispatch(deletePost(post._id))}
         >
-          <DeleteIcon fontSize="small" /> Delete
+          <DeleteIcon fontSize="small" /> удалить
         </Button>
 
         <IconButton
+          title="редактировать"
           className={classes.editButton}
-          aria-label="edit"
           onClick={() => setCurrentId(post._id)}
         >
-          <EditOutlinedIcon fontSize="small" />
+          <EditOutlinedIcon color="primary" fontSize="small" />
         </IconButton>
-
-        {/*<EditOutlinedIcon className={classes.editIcon}*/}
-        {/*  fontSize="small"*/}
-        {/*  onClick={() => setCurrentId(post._id)}*/}
-        {/*/>*/}
       </CardActions>
     </Card>
   );
@@ -112,7 +107,9 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
   title: {
-    marginBottom: '5px',
+    wordBreak: 'break-all',
+    paddingBottom: '5px',
+    lineHeight: '1.2rem',
     borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
   },
   cardContent: {
@@ -128,10 +125,6 @@ const useStyles = makeStyles({
   },
   editButton: {
     backgroundColor: 'transparent',
-    '&:hover': {
-      color: 'black',
-      backgroundColor: 'yellow',
-    },
   },
 });
 

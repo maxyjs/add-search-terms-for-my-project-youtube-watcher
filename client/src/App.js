@@ -19,8 +19,13 @@ const App = () => {
   return (
     <Container maxWidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h5" align="center">
-          Search Terms
+        <Typography
+          color="primary"
+          className={classes.heading}
+          variant="h5"
+          align="center"
+        >
+          Поисковые запросы
         </Typography>
       </AppBar>
 

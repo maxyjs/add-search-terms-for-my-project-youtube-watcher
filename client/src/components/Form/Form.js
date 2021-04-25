@@ -61,13 +61,15 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          {currentId ? `Editing "${post.term}"` : 'Creating a Term'}
+          {currentId
+            ? `Редактирование "${post.term}"`
+            : 'Добавление поискового запроса'}
         </Typography>
 
         <TextField
           name="term"
           variant="outlined"
-          label="Search Term"
+          label="Поисковый запрос"
           multiline
           fullWidth
           value={formValue.term}
@@ -77,7 +79,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="minRating"
           variant="outlined"
-          label="Min Rating"
+          label="Минимальный рейтинг видео"
           type="number"
           fullWidth
           value={formValue.minRating}
@@ -87,7 +89,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="minViews"
           variant="outlined"
-          label="Min Views"
+          label="Минимальное количество просмотров видео"
           type="number"
           fullWidth
           value={formValue.minViews}
@@ -97,7 +99,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="addPlaylistMark"
           variant="outlined"
-          label="Add to Playlist has Mark"
+          label="Добавить в плейлист содержащий фразу"
           fullWidth
           value={formValue.addPlaylistMark}
           onChange={handleChangeInput}
@@ -106,7 +108,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="dateTimeUpload"
           variant="outlined"
-          label="Date Time Upload Video"
+          label="Минимальное время загрузки видео"
           fullWidth
           value={formValue.dateTimeUpload}
           onChange={handleChangeInput}
@@ -115,7 +117,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="videosLength"
           variant="outlined"
-          label="Min Video Length"
+          label="Длина видео"
           fullWidth
           value={formValue.videosLength}
           onChange={handleChangeInput}
@@ -129,7 +131,7 @@ const Form = ({ currentId, setCurrentId }) => {
           type="submit"
           fullWidth
         >
-          Submit
+          добавить
         </Button>
 
         <Button
@@ -139,7 +141,7 @@ const Form = ({ currentId, setCurrentId }) => {
           onClick={clearForm}
           fullWidth
         >
-          Clear
+          дефолтные значения
         </Button>
       </form>
     </Paper>
@@ -149,7 +151,7 @@ const Form = ({ currentId, setCurrentId }) => {
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
+      margin: 8,
     },
   },
   paper: {
