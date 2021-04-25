@@ -1,55 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { makeStyles } from '@material-ui/core/styles';
 import { createPost, updatePost } from '../../actions/posts';
+
+const defaultValueForm = {
+  term: 'test term 1',
+  minRating: '80',
+  minViews: '1000',
+  addPlaylistMark: 'auto_WATCHER',
+  dateTimeUpload: 'thisYear',
+  videosLength: 'anyLength',
+};
 
 const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [postData, setPostData] = useState({
-    term: '',
-    minRating: '',
-    minViews: '',
-    addPlaylistMark: '',
-    dateTimeUpload: '',
-    videosLength: '',
+  const [formValue, setFormValue] = useState(defaultValueForm);
+
+  const post = useSelector((state) => {
+    return currentId
+      ? state.posts.find((message) => message._id === currentId)
+      : null;
   });
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
-  );
+  useEffect(() => {
+    setFormValue(defaultValueForm);
+  }, []);
 
   useEffect(() => {
-    if (post) setPostData(post);
+    if (post) setFormValue(post);
   }, [post]);
 
   const clearForm = () => {
     setCurrentId(0);
-    setPostData({
-      term: '',
-      minRating: '',
-      minViews: '',
-      addPlaylistMark: '',
-      dateTimeUpload: '',
-      videosLength: '',
-    });
+    setFormValue(defaultValueForm);
   };
 
   const clearCurrentId = () => {
     setCurrentId(0);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId === 0) {
-      dispatch(createPost(postData));
-      clearCurrentId();
+      dispatch(createPost(formValue));
+      clearForm();
     } else {
-      dispatch(updatePost(currentId, postData));
+      dispatch(updatePost(currentId, formValue));
       clearCurrentId();
     }
+  };
+
+  const handleChangeInput = (event) => {
+    setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
 
   return (
@@ -67,11 +71,11 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="term"
           variant="outlined"
-          label="Term"
+          label="Search Term"
           multiline
           fullWidth
-          value={postData.term}
-          onChange={(e) => setPostData({ ...postData, term: e.target.value })}
+          value={formValue.term}
+          onChange={handleChangeInput}
         />
 
         <TextField
@@ -80,11 +84,8 @@ const Form = ({ currentId, setCurrentId }) => {
           label="Min Rating"
           type="number"
           fullWidth
-          rows={4}
-          value={postData.minRating}
-          onChange={(e) =>
-            setPostData({ ...postData, minRating: e.target.value })
-          }
+          value={formValue.minRating}
+          onChange={handleChangeInput}
         />
 
         <TextField
@@ -93,10 +94,8 @@ const Form = ({ currentId, setCurrentId }) => {
           label="Min Views"
           type="number"
           fullWidth
-          value={postData.minViews}
-          onChange={(e) =>
-            setPostData({ ...postData, minViews: e.target.value })
-          }
+          value={formValue.minViews}
+          onChange={handleChangeInput}
         />
 
         <TextField
@@ -104,10 +103,8 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Add to Playlist has Mark"
           fullWidth
-          value={postData.addPlaylistMark}
-          onChange={(e) =>
-            setPostData({ ...postData, addPlaylistMark: e.target.value })
-          }
+          value={formValue.addPlaylistMark}
+          onChange={handleChangeInput}
         />
 
         <TextField
@@ -115,10 +112,8 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Date Time Upload Video"
           fullWidth
-          value={postData.dateTimeUpload}
-          onChange={(e) =>
-            setPostData({ ...postData, dateTimeUpload: e.target.value })
-          }
+          value={formValue.dateTimeUpload}
+          onChange={handleChangeInput}
         />
 
         <TextField
@@ -126,10 +121,8 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Min Video Length"
           fullWidth
-          value={postData.videosLength}
-          onChange={(e) =>
-            setPostData({ ...postData, videosLength: e.target.value })
-          }
+          value={formValue.videosLength}
+          onChange={handleChangeInput}
         />
 
         <Button
