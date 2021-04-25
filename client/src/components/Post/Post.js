@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-} from '@material-ui/core/';
+import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core/';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import moment from 'moment';

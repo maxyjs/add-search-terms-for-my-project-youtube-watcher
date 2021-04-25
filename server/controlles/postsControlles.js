@@ -19,9 +19,8 @@ export const getPost = async (req, res) => {
 
 export const createPost = async (req, res) => {
   const newPostMessage = new PostMessage({
-    ...req.body
+    ...req.body,
   });
-console.log('\x1b[36m%s\x1b[0m', "newPostMessage = ", newPostMessage); /* CONSOLE *************/
   try {
     await newPostMessage.save();
     res.status(201).json(newPostMessage);
