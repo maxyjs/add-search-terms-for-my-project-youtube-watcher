@@ -31,11 +31,7 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <Card className={classes.card}>
-      <Typography
-        className={classes.title}
-        gutterBottom
-        variant="h6"
-      >
+      <Typography className={classes.title} variant="h6">
         {term}
       </Typography>
 
@@ -117,12 +113,16 @@ const useStyles = makeStyles({
   },
   title: {
     marginBottom: '5px',
+    borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
   },
   cardContent: {
-    padding: '0 5px',
+    padding: '0 5px 12px 0',
+    borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
   },
   cardActions: {
-    padding: '0 10px 8px 5px',
+    padding: 0,
+    margin: 0,
+    height: '35px',
     display: 'flex',
     justifyContent: 'space-between',
   },
