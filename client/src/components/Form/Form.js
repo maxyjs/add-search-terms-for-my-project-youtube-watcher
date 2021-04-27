@@ -149,7 +149,7 @@ const Form = ({ currentId, setCurrentId }) => {
   );
 };
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: 8,
@@ -158,7 +158,13 @@ const useStyles = makeStyles(() => ({
   paper: {
     padding: '5px 8px 15px 8px',
     borderRadius: '2px',
-    margin: '0px 20px 20px 0px',
+    margin: '0px 0px 20px 0px',
+    [theme.breakpoints.down('sm')]: {
+      margin: '0px 0px 20px 0px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      margin: '0px 20px 20px 0px',
+    },
   },
   form: {
     display: 'flex',

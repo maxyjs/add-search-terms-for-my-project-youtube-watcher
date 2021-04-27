@@ -1,12 +1,12 @@
 import React from 'react';
-import { Typography } from '@material-ui/core/';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const CardContentRow = ({ icon, contentLeft, contentRight }) => {
   const classes = useStyles();
 
   return (
-    <Typography variant="body2" color="textSecondary" component="p">
+    <Typography variant="body2" color="textSecondary" component="div">
       <div className={classes.row}>
         <span className={classes.contentLeft}>
           <span className={classes.icon}>{icon}</span>

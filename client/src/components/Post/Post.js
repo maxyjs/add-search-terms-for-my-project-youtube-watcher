@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-} from '@material-ui/core/';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import IconButton from '@material-ui/core/IconButton';
@@ -96,7 +94,6 @@ const useStyles = makeStyles({
     borderRadius: '3px',
     height: '100%',
     padding: '5px 5px 0px 10px',
-    border: '2px solid',
   },
   grid: {
     display: 'flex',
@@ -112,15 +109,15 @@ const useStyles = makeStyles({
     borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
   },
   cardContent: {
-    padding: '0 5px 12px 0',
-    borderBottom: '1px solid rgba(0, 0, 0, 0.3)',
+    padding: '5px 5px 5px 0px',
   },
   cardActions: {
+    borderTop: '1px solid rgba(0, 0, 0, 0.3)',
     padding: 0,
-    margin: 0,
     height: '35px',
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   editButton: {
     backgroundColor: 'transparent',
