@@ -31,11 +31,12 @@ const App = () => {
 
       <Grow in>
         <Container className={classes.container}>
-          <Grid container justify="space-between" alignItems="stretch">
+          {/*<Grid container justify="space-between" alignItems="stretch">*/}
+          <Grid container alignItems="stretch">
             <Grid item xs={12} sm={5}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={7}>
               <Posts setCurrentId={setCurrentId} />
             </Grid>
           </Grid>

@@ -60,9 +60,7 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography
-          className={classes.formTitle}
-          variant="h6">
+        <Typography className={classes.formTitle} variant="h6">
           {currentId
             ? `Редактирование "${post.term}"`
             : 'Добавление поискового запроса'}
@@ -72,6 +70,7 @@ const Form = ({ currentId, setCurrentId }) => {
           name="term"
           variant="outlined"
           label="Поисковый запрос"
+          autoComplete="on"
           multiline
           fullWidth
           value={formValue.term}
@@ -150,7 +149,7 @@ const Form = ({ currentId, setCurrentId }) => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     '& .MuiTextField-root': {
       margin: 8,
@@ -159,7 +158,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: '5px 8px 15px 8px',
     borderRadius: '2px',
-    marginBottom: '20px',
+    margin: '0px 20px 20px 0px',
   },
   form: {
     display: 'flex',
@@ -168,7 +167,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formTitle: {
     lineHeight: '1.3rem',
-    padding: '5px 10px 15px 10px'
+    padding: '5px 10px 15px 10px',
   },
   buttonSubmit: {
     marginBottom: 10,

@@ -15,6 +15,7 @@ import { deletePost } from '../../actions/postsActions';
 import CardContentRow from './CardContentRow';
 import moment from 'moment';
 import 'moment/locale/ru';
+
 moment.locale('ru');
 
 const Post = ({ post, setCurrentId }) => {
@@ -25,7 +26,6 @@ const Post = ({ post, setCurrentId }) => {
     dateTimeUpload,
     addPlaylistMark,
     videosLength,
-    createdAt,
   } = post;
 
   const dispatch = useDispatch();

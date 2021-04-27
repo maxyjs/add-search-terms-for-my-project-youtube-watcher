@@ -11,12 +11,7 @@ const Posts = ({ setCurrentId }) => {
   return !posts.length ? (
     <CircularProgress />
   ) : (
-    <Grid
-      className={classes.container}
-      container
-      alignItems="stretch"
-      spacing={1}
-    >
+    <Grid className={classes.container} container alignItems="stretch">
       {posts.map((post) => (
         <Grid key={post._id} item xs={12} sm={12} md={12}>
           <Post post={post} setCurrentId={setCurrentId} />
@@ -26,7 +21,7 @@ const Posts = ({ setCurrentId }) => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   mainContainer: {
     display: 'flex',
     alignItems: 'center',
