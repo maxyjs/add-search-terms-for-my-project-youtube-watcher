@@ -9,7 +9,7 @@
     "start": "nodemon index.js"
   },
   "keywords": [],
-  "author": "SokolovDADeveloper",
+  "author": "maxyjs",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
